@@ -10,8 +10,13 @@ int global_j = 11;
 
 // Part 1.ii  //
 void part1_2();
+
+// Part 3
+void part3();
+
 // Part 1.iii  //
 void part1_3();
+
 
 
 int main() {
@@ -37,11 +42,15 @@ int main() {
     printf("x is %f\n", x);
 
     char * name = "mika";
-    printf("my name is %s\n", name);
+    printf("my name is %s\n\n", name);
 
 
     // Part 1.ii  //
     part1_2();
+
+    // Part 3
+    part3();
+
     // Part 1.iii  //
     part1_3();
 
@@ -64,7 +73,7 @@ void part1_2() {
     wont_change(global_i);
     printf("%d\n", global_i);
     change_inside(&global_i);
-    printf("%d\n", global_i);
+    printf("%d\n\n", global_i);
 }
 
 
@@ -73,10 +82,39 @@ int will_return_it_changed(int argument_j) {
     return argument_j + 1;
 }
 
+
+void swap_ends(int karray[], int size) {
+
+
+    int tmp = karray[0];
+    karray[0] = karray[size - 1];
+    karray[size - 1] = tmp;
+}
+
+void part3() {
+    int narray[] = { 3, 4, 7, 1, 23 };
+
+    printf("Start: %d; End: %d\n", narray[0], narray[4]);
+    swap_ends(narray, 5);
+    printf("Start: %d; End: %d\n\n", narray[0], narray[4]);
+
+}
+
+
+
+
+
 void part1_3() {
     printf("%d\n", global_j);
     global_j = will_return_it_changed(global_j);
     printf("%d\n", global_j);
+
+
+
+
+
+
+
 
 
 // Part 2. Array Duality //
@@ -137,8 +175,7 @@ void part1_3() {
     int cstring_size = (sizeof(cstring) / sizeof(cstring[0]) - 1);
 
     // print info about string
-    printf("number of letters in abracadabra is %d\n", cstring_size);
-
+    printf("\nnumber of letters in abracadabra is %d\n", cstring_size);
 
 
 
