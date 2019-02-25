@@ -1,7 +1,7 @@
 //
 // Created by Frank Pryor on 2019-02-21.
 //
-
+#include <stdlib.h>
 #include <stdio.h>
 
 
@@ -20,14 +20,50 @@ void part1_3();
 
 
 int main() {
+    // 4. Memory allocation //
 
-    // Part 1. Pointers //
+    int *array_size = (int *) malloc(sizeof(int));
+    int size = 9;
+
+
+    if (array_size == NULL) {
+        printf("ERROR: Memory allocation failed!\n");
+        return 1;
+    } else {
+        *array_size = 11;
+    }
+
+    // explicit allocation on heap
+    int *int_array = (int *) malloc(*array_size * sizeof(int));
+
+    // check
+
+    if (int_array == NULL) {
+        printf("ERROR: Memory allocation failed!\n");
+        return 0;
+    } else {
+        for (int i = 0; i < *array_size; i ++) {
+            int_array[i] = i * 3 + *array_size;
+            printf("Array element %d holds %d\n", i, int_array[i]);
+        }
+    }
+
+    // free allocated memory
+    free(array_size);
+    array_size = NULL;
+
+    free(int_array);
+    int_array = NULL;
+
+
+
+            // Part 1. Pointers //
     int a = 33;
     int *pa = &a;
 
     a +=2;
     *pa += 2;
-    printf("The value of a is %d\n", a);
+    printf("\nThe value of a is %d\n", a);
 
     int i = 19;
     int *p = &i;
@@ -131,19 +167,13 @@ void part1_3() {
     for (int i = 5; i < 10; i ++) {
         iarray[i] = 1;
     }
-    iarray[6] = 7;  // the type of 'iarray[5]' is integer (int)
-    // the indexing is equivalent to dereferencing
-    // (including the step calculation laid out above)
+    iarray[6] = 7;
 
 //  explicitly
     int *jarr = iarray;
     jarr[6] = jarr[6] + 1;
 
     int jarr_size = sizeof(*jarr);
-// once an array had "degenerated" to a pointer, the
-// `sizeof(jarr)` expression will only return the size of the
-// pointer in bytes (most probably 4)
-
 
     // print commands for integer array
     printf("The value of the 5th element of the integer array is %d\n",iarray[4]);
@@ -175,9 +205,40 @@ void part1_3() {
     int cstring_size = (sizeof(cstring) / sizeof(cstring[0]) - 1);
 
     // print info about string
-    printf("\nnumber of letters in abracadabra is %d\n", cstring_size);
+    printf("\nnumber of letters in abracadabra is %d\n\n", cstring_size);
 
 
+
+// 4. Structures
+
+struct tape_collection {
+    char artist[28];
+    char title[28];
+    int rating;
+};
+
+struct tape_collection tr4 = {"TENTENKO", "ROBOT", 4};
+struct tape_collection pe3 = {"Phantogram", "Eyelid Movies", 3};
+struct tape_collection pa2 = {"Plebian", "Atrium", 2};
+struct tape_collection bd5 = {"Bright Eyes", "Digital Ash in a Digital Urn", 5};
+struct tape_collection nt5 = {"Nmesh & TELEPATH", "(The Path to Lost Eden)", 5};
+
+printf("Current Rotation: \n");
+printf("%s - %s - %d stars \n", tr4.artist,
+                                tr4.title,
+                                tr4.rating);
+printf("%s - %s - %d stars \n", pe3.artist,
+                                pe3.title,
+                                pe3.rating);
+printf("%s - %s - %d stars \n", pa2.artist,
+                                pa2.title,
+                                pa2.rating);
+printf("%s - %s - %d stars \n", bd5.artist,
+                                bd5.title,
+                                bd5.rating);
+printf("%s - %s - %d stars \n", nt5.artist,
+                                nt5.title,
+                                nt5.rating);
 
 
 }
