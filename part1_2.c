@@ -1,4 +1,5 @@
-
+//
+// Created by Frank Pryor on 2019-03-02.
 //
 int global_i = 9;
 int global_j = 11;
@@ -21,12 +22,10 @@ void part1_2() {
 }
 
 
-
 int will_return_it_changed(int argument_j) {
     return argument_j + 1;
 }
 
 
-// Created by Frank Pryor on 2019-03-02.
-//
+
 

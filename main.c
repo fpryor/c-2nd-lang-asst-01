@@ -7,20 +7,51 @@
 
 
 
-// Part 1.ii  //
-void part1_2();
 
 // Part 3
 void part3();
 
-// Part 1.iii  //
+// Part 1.iii
 void part1_3();
 
 
-
 int main() {
-    // 4. Memory allocation //
 
+    // Part 1. Pointers
+    int a = 33;
+    int *pa = &a;
+
+    a +=2;
+    *pa += 2;
+    printf("\nThe value of a is %d\n", a);
+
+    int i = 19;
+    int *p = &i;
+    *p = 21;
+    int **pt = &p;
+    **pt += 15;
+    printf("The value of i is now %d\n", i);
+
+    float x = 3.3;
+    float *f = &x;
+    *f += 1;
+    printf("x is %f\n", x);
+
+    char * name = "mika";
+    printf("my name is %s\n\n", name);
+
+
+
+    // Part 1.ii
+    part1_2();
+    // Part 3
+    part3();
+    // Part 1.iii
+    part1_3();
+
+
+
+    // 4. Memory allocation
     int *array_size = (int *) malloc(sizeof(int));
     int size = 9;
 
@@ -47,7 +78,7 @@ int main() {
         }
     }
 
-    // free allocated memory
+    // free
     free(array_size);
     array_size = NULL;
 
@@ -55,69 +86,47 @@ int main() {
     int_array = NULL;
 
 
-
-            // Part 1. Pointers //
-    int a = 33;
-    int *pa = &a;
-
-    a +=2;
-    *pa += 2;
-    printf("\nThe value of a is %d\n", a);
-
-    int i = 19;
-    int *p = &i;
-    *p = 21;
-    int **pt = &p;
-    **pt += 15;
-    printf("The value of i is now %d\n", i);
-
-    float x = 3.3;
-    float *f = &x;
-    *f += 1;
-    printf("x is %f\n", x);
-
-    char * name = "mika";
-    printf("my name is %s\n\n", name);
-
-
-    // Part 1.ii  //
-    part1_2();
-
-    // Part 3
-    part3();
-
-    // Part 1.iii  //
-    part1_3();
-
-
     double ***data_cube;
 
 // allocate 1st
-    data_cube = (double ***) malloc(sizeof(double **) * 10);
+    data_cube = (double ***) malloc(sizeof(double **) * 4);
 
 // allocate 2nd
-    for (int i=0; i<10; i++)
-        data_cube[i] = (double **) malloc(sizeof(double *) * 10);
+    for (int i=0; i<4; i++)
+        data_cube[i] = (double **) malloc(sizeof(double *) * 4);
 
 
 // allocate 3rd
-    for (int i=0; i<10; i++)
-        for (int j=0; j<10; j++)
-            data_cube[i][j] = (double *) malloc(sizeof(double) * 10);
+    for (int i=0; i<4; i++)
+        for (int j=0; j<4; j++)
+            data_cube[i][j] = (double *) malloc(sizeof(double) * 4);
 
-// use the data cube...
-    data_cube = (0, 0, 0, 3.3, 0, 0, 0, 0, 0, 0);
-    data_cube[i] = (0, 0, 0, 7, 0, 0, 0, 0, 0, 0);
+// use data_cube..
 
+double m;
+m = 0;
+for  (int i=0; i<4; i++)
+        for (int j=0; j<4; j++)
+            for (int k=0; k<4; k++) {
+                data_cube[i][j][k] = m;
+                m = m + 1.0;
+            }
 
+    for  (int i=0; i<4; i++)
+        for (int j=0; j<4; j++) {
+            printf("\n");
+            for (int k = 0; k < 4; k++) {
+                printf(" %f", data_cube[i][j][k]);
+            }
+        }
 
 // free 3rd
-    for (int i=0; i<10; i++)
-        for (int j=0; j<10; j++)
+    for (int i=0; i<4; i++)
+        for (int j=0; j<4; j++)
             free(data_cube[i][j]);
 
 // free 2nd
-    for (int i=0; i<10; i++)
+    for (int i=0; i<4; i++)
         free(data_cube[i]);
 
 // free 1st
@@ -125,18 +134,12 @@ int main() {
 
 
 
-
-
-
-
-
         return 0;
 }
 
 
-// Part 1.ii  //
-
-
+// part3 and part1_3 functions
+// I tried unsuccessfully to extricate them into separate .c files
 
 void swap_ends(int karray[], int size) {
 
@@ -162,9 +165,9 @@ void part1_3() {
     printf("%d\n", global_j);
 
 
-// Part 2. Array Duality //
 
-// integer array //
+// Part 2. Array Duality
+
     int iarray[10];
 
     int iarray_size = sizeof(iarray) / sizeof(iarray[0]);
@@ -193,8 +196,7 @@ void part1_3() {
 
 
 
-
-// literal array assignment for float array //
+// literal array assignment for float array
     float farray[] = { 0.5, 8.6 };
 
     // add 1 to the value of each float array element
@@ -208,7 +210,7 @@ void part1_3() {
     }
 
 
-// character array //
+// character array
     char cstring[] = "abracadabra";
 
     int cstring_size = (sizeof(cstring) / sizeof(cstring[0]) - 1);
@@ -218,36 +220,37 @@ void part1_3() {
 
 
 
+
 // 4. Structures
 
-struct tape_collection {
-    char artist[28];
-    char title[28];
-    int rating;
-};
+    struct tape_collection {
+        char artist[28];
+        char title[28];
+        int rating;
+    };
 
-struct tape_collection tr4 = {"TENTENKO", "ROBOT", 4};
-struct tape_collection pe3 = {"Phantogram", "Eyelid Movies", 3};
-struct tape_collection pa2 = {"Plebian", "Atrium", 2};
-struct tape_collection bd5 = {"Bright Eyes", "Digital Ash in a Digital Urn", 5};
-struct tape_collection nt5 = {"Nmesh & TELEPATH", "(The Path to Lost Eden)", 5};
+    struct tape_collection tr4 = {"TENTENKO", "ROBOT", 4};
+    struct tape_collection pe3 = {"Phantogram", "Eyelid Movies", 3};
+    struct tape_collection pa2 = {"Plebian", "Atrium", 2};
+    struct tape_collection bd5 = {"Bright Eyes", "Digital Ash in a Digital Urn", 5};
+    struct tape_collection nt5 = {"Nmesh & TELEPATH", "(The Path to Lost Eden)", 5};
 
-printf("Current Rotation: \n");
-printf("%s - %s - %d stars \n", tr4.artist,
-                                tr4.title,
-                                tr4.rating);
-printf("%s - %s - %d stars \n", pe3.artist,
-                                pe3.title,
-                                pe3.rating);
-printf("%s - %s - %d stars \n", pa2.artist,
-                                pa2.title,
-                                pa2.rating);
-printf("%s - %s - %d stars \n", bd5.artist,
-                                bd5.title,
-                                bd5.rating);
-printf("%s - %s - %d stars \n", nt5.artist,
-                                nt5.title,
-                                nt5.rating);
+    printf("Current Rotation: \n");
+    printf("%s - %s - %d stars \n", tr4.artist,
+           tr4.title,
+           tr4.rating);
+    printf("%s - %s - %d stars \n", pe3.artist,
+           pe3.title,
+           pe3.rating);
+    printf("%s - %s - %d stars \n", pa2.artist,
+           pa2.title,
+           pa2.rating);
+    printf("%s - %s - %d stars \n", bd5.artist,
+           bd5.title,
+           bd5.rating);
+    printf("%s - %s - %d stars \n\n", nt5.artist,
+           nt5.title,
+           nt5.rating);
 
 
 }
