@@ -3,10 +3,9 @@
 //
 #include <stdlib.h>
 #include <stdio.h>
+#include "part1_2.c"
 
 
-int global_i = 9;
-int global_j = 11;
 
 // Part 1.ii  //
 void part1_2();
@@ -95,28 +94,7 @@ int main() {
 
 
 // Part 1.ii  //
-void wont_change(int argument_i) {
-    argument_i = 10;
-}
 
-
-void change_inside(int *pointer_to_global_i) {
-    *pointer_to_global_i = 10; // dereference and assign a new value
-}
-
-void part1_2() {
-    printf("%d\n", global_i);
-    wont_change(global_i);
-    printf("%d\n", global_i);
-    change_inside(&global_i);
-    printf("%d\n\n", global_i);
-}
-
-
-
-int will_return_it_changed(int argument_j) {
-    return argument_j + 1;
-}
 
 
 void swap_ends(int karray[], int size) {
@@ -127,30 +105,20 @@ void swap_ends(int karray[], int size) {
     karray[size - 1] = tmp;
 }
 
+
 void part3() {
-    int narray[] = { 3, 4, 7, 1, 23 };
+    int narray[] = {3, 4, 7, 1, 23};
 
     printf("Start: %d; End: %d\n", narray[0], narray[4]);
     swap_ends(narray, 5);
     printf("Start: %d; End: %d\n\n", narray[0], narray[4]);
-
 }
-
-
-
 
 
 void part1_3() {
     printf("%d\n", global_j);
     global_j = will_return_it_changed(global_j);
     printf("%d\n", global_j);
-
-
-
-
-
-
-
 
 
 // Part 2. Array Duality //
