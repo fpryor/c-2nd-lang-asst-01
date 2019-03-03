@@ -89,6 +89,47 @@ int main() {
     // Part 1.iii  //
     part1_3();
 
+
+    double ***data_cube;
+
+// allocate 1st
+    data_cube = (double ***) malloc(sizeof(double **) * 10);
+
+// allocate 2nd
+    for (int i=0; i<10; i++)
+        data_cube[i] = (double **) malloc(sizeof(double *) * 10);
+
+
+// allocate 3rd
+    for (int i=0; i<10; i++)
+        for (int j=0; j<10; j++)
+            data_cube[i][j] = (double *) malloc(sizeof(double) * 10);
+
+// use the data cube...
+    data_cube = (0, 0, 0, 3.3, 0, 0, 0, 0, 0, 0);
+    data_cube[i] = (0, 0, 0, 7, 0, 0, 0, 0, 0, 0);
+
+
+
+// free 3rd
+    for (int i=0; i<10; i++)
+        for (int j=0; j<10; j++)
+            free(data_cube[i][j]);
+
+// free 2nd
+    for (int i=0; i<10; i++)
+        free(data_cube[i]);
+
+// free 1st
+    free(data_cube);
+
+
+
+
+
+
+
+
         return 0;
 }
 
