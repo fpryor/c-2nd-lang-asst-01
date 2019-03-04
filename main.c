@@ -102,7 +102,6 @@ int main() {
             data_cube[i][j] = (double *) malloc(sizeof(double) * 4);
 
 // use data_cube..
-
 double m;
 m = 0;
 for  (int i=0; i<4; i++)
@@ -166,7 +165,7 @@ void part1_3() {
 
 
 
-// Part 2. Array Duality
+// 2. Array Duality
 
     int iarray[10];
 
